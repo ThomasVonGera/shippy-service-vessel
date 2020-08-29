@@ -20,6 +20,6 @@ RUN apk --no-cache add ca-certificates
 
 RUN mkdir /app
 WORKDIR /app
-COPY --from=builder /app/shippy-service-vessel
+COPY --from=builder /app/shippy-service-vessel .
 
 CMD [ "./shippy-service-vessel" ]
