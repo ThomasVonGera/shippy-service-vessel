@@ -42,7 +42,7 @@ func NewVesselServiceEndpoints() []*api.Endpoint {
 // Client API for VesselService service
 
 type VesselService interface {
-	FindAvaiable(ctx context.Context, in *Specification, opts ...client.CallOption) (*Response, error)
+	FindAvailable(ctx context.Context, in *Specification, opts ...client.CallOption) (*Response, error)
 	Create(ctx context.Context, in *Vessel, opts ...client.CallOption) (*Response, error)
 }
 
@@ -58,8 +58,8 @@ func NewVesselService(name string, c client.Client) VesselService {
 	}
 }
 
-func (c *vesselService) FindAvaiable(ctx context.Context, in *Specification, opts ...client.CallOption) (*Response, error) {
-	req := c.c.NewRequest(c.name, "VesselService.FindAvaiable", in)
+func (c *vesselService) FindAvailable(ctx context.Context, in *Specification, opts ...client.CallOption) (*Response, error) {
+	req := c.c.NewRequest(c.name, "VesselService.FindAvailable", in)
 	out := new(Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -81,13 +81,13 @@ func (c *vesselService) Create(ctx context.Context, in *Vessel, opts ...client.C
 // Server API for VesselService service
 
 type VesselServiceHandler interface {
-	FindAvaiable(context.Context, *Specification, *Response) error
+	FindAvailable(context.Context, *Specification, *Response) error
 	Create(context.Context, *Vessel, *Response) error
 }
 
 func RegisterVesselServiceHandler(s server.Server, hdlr VesselServiceHandler, opts ...server.HandlerOption) error {
 	type vesselService interface {
-		FindAvaiable(ctx context.Context, in *Specification, out *Response) error
+		FindAvailable(ctx context.Context, in *Specification, out *Response) error
 		Create(ctx context.Context, in *Vessel, out *Response) error
 	}
 	type VesselService struct {
@@ -101,8 +101,8 @@ type vesselServiceHandler struct {
 	VesselServiceHandler
 }
 
-func (h *vesselServiceHandler) FindAvaiable(ctx context.Context, in *Specification, out *Response) error {
-	return h.VesselServiceHandler.FindAvaiable(ctx, in, out)
+func (h *vesselServiceHandler) FindAvailable(ctx context.Context, in *Specification, out *Response) error {
+	return h.VesselServiceHandler.FindAvailable(ctx, in, out)
 }
 
 func (h *vesselServiceHandler) Create(ctx context.Context, in *Vessel, out *Response) error {

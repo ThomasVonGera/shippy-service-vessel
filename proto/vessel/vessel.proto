@@ -4,7 +4,7 @@ package vessel;
 
 
 service VesselService   {
-    rpc FindAvaiable(Specification) returns (Response)  {}
+    rpc FindAvailable(Specification) returns (Response)  {}
     rpc Create(Vessel) returns (Response) {}
 }
 
@@ -13,7 +13,7 @@ message Vessel {
     int32 capacity = 2;
     int32 max_weight = 3;
     string name = 4;
-    bool avaiable = 5;
+    bool available = 5;
     string owner_id = 6;
 }
 
